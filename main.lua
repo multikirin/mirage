@@ -240,7 +240,6 @@ local Togglera = Tab:CreateToggle({
 		-- The function that takes place when the toggle is pressed
     		-- The variable (Value) is a boolean on whether the toggle is true or false
 		getgenv().mirage.respawnwheredead=Value
-		while getgenv().mirage.respawnwheredead do
 				local LocalPlayer = game:GetService("Players").LocalPlayer
 
 local function GetLocation()
@@ -258,6 +257,7 @@ character:WaitForChild("HumanoidRootPart").CFrame = Location
 end
 character:WaitForChild("Humanoid").Died:Connect(function()
 Location = GetLocation()
+if not getgenv().mirage.respawnwheredead then Location = nil end
 end)
 end)
 		end
