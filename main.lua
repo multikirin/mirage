@@ -230,6 +230,40 @@ local Slider2 = Tab:CreateSlider({
 		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=Value
 	end,
 	})
+getgenv().mirage = {}
+getgenv().mirage.respawnheredead=false
+local Togglera = Tab:CreateToggle({
+	Name = "Respawn where you died",
+	CurrentValue = false,
+	Flag = "respawnwheredead", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(Value)
+		-- The function that takes place when the toggle is pressed
+    		-- The variable (Value) is a boolean on whether the toggle is true or false
+		getgenv().mirage.respawnwheredead=Value
+		while getgenv().mirage.respawnwheredead do
+				local LocalPlayer = game:GetService("Players").LocalPlayer
+
+local function GetLocation()
+if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Head") then
+return LocalPlayer.Character.HumanoidRootPart.CFrame
+end
+return nil
+end
+
+local Location = nil
+
+LocalPlayer.CharacterAdded:Connect(function(character)
+if Location then
+character:WaitForChild("HumanoidRootPart").CFrame = Location
+end
+character:WaitForChild("Humanoid").Died:Connect(function()
+Location = GetLocation()
+end)
+end)
+		end
+	end,
+})
+
 
 --[[
 local Toggle = Tab:CreateToggle({
