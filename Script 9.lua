@@ -171,6 +171,17 @@ end
 end)
 end,
 })
+local Slider = Tab:CreateSlider({
+	Name = "Speed",
+	Range = {0, 1000},
+	Increment = 10,
+	Suffix = "Speed",
+	CurrentValue = 500,
+	Flag = "speedspeed", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=Value
+	end)}
+
 --[[
 local Toggle = Tab:CreateToggle({
 	Name = "Toggle Example",
