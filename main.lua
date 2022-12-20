@@ -20,8 +20,8 @@ local Window = Rayfield:CreateWindow({
 })
 
 Rayfield:Notify("m1rage", "Loaded!", 4483362458) -- Notfication -- Title, Content, Image
-Keybind:Set("RightCtrl")
-Rayfield:Notify("m1rage", "note:open and close the GUI using the right ctrl key.", 4483362458) -- Notfication -- Title, Content, Image
+--Keybind:Set("RightCtrl")
+Rayfield:Notify("m1rage", "note:open and close the GUI using the right shift key.", 4483362458) -- Notfication -- Title, Content, Image
 local Tab = Window:CreateTab("Fun", 4483362458) -- Title, Image
 
 local Section = Tab:CreateSection("Killing")
