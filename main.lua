@@ -240,17 +240,17 @@ local Togglera = Tab:CreateToggle({
 	Callback = function(Value)
 		-- The function that takes place when the toggle is pressed
     		-- The variable (Value) is a boolean on whether the toggle is true or false
-		
-		if getgenv().mirage.respawnwheredead then getgenv().mirage.respawnwheredead=false; alreadyrwyd=true return end
-		if alreadyrwyd then getgenv().mirage.respawnwheredead=Value return end
+		getgenv().mirage.respawnwheredead=Value
+		--if getgenv().mirage.respawnwheredead then getgenv().mirage.respawnwheredead=false; alreadyrwyd=true return end
+		--if alreadyrwyd then getgenv().mirage.respawnwheredead=Value return end
 		game.Players.LocalPlayer.Character:WaitForChild('Humanoid').Died:connect(function()
    			local a = game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').Position
    			game.Players.LocalPlayer.CharacterAdded:Wait()
 			if not getgenv().mirage.respawnwheredead then return end
    			game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').CFrame = CFrame.new(a)
 		end)
-		getgenv().mirage.respawnwheredead=Value
-		alreadyrwyd=true
+		
+		--alreadyrwyd=true
 	end,
 })
 
