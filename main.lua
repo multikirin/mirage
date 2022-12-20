@@ -175,7 +175,7 @@ end,
 local prisonlifekillall = Tab2:CreateButton({
 	Name = "Kill All",
 	Callback = function()
-			spawn(function()
+spawn(function()
     while wait(0.1) do
         for i, v in next, game:GetService("Players"):GetChildren() do
             pcall(function()
@@ -193,7 +193,8 @@ local prisonlifekillall = Tab2:CreateButton({
         end
    end
 end)
-			end})
+			end,
+})
 
 local Slider2 = Tab:CreateSlider({
 	Name = "Speed",
@@ -204,7 +205,8 @@ local Slider2 = Tab:CreateSlider({
 	Flag = "speedspeed", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 	Callback = function(Value)
 		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=Value
-	end})
+	end,
+	})
 
 --[[
 local Toggle = Tab:CreateToggle({
