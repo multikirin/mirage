@@ -173,8 +173,8 @@ end,
 })
 
 local prisonlifekillall = Tab2:CreateButton({
-	Name = "Kill All"
-		Callback = function()
+	Name = "Kill All",
+	Callback = function()
 			spawn(function()
     while wait(0.1) do
         for i, v in next, game:GetService("Players"):GetChildren() do
