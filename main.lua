@@ -232,6 +232,7 @@ local Slider2 = Tab:CreateSlider({
 	})
 getgenv().mirage = {}
 getgenv().mirage.respawnheredead=false
+alreadyrwyd=false
 local Togglera = Tab:CreateToggle({
 	Name = "Respawn where you died",
 	CurrentValue = false,
@@ -239,28 +240,17 @@ local Togglera = Tab:CreateToggle({
 	Callback = function(Value)
 		-- The function that takes place when the toggle is pressed
     		-- The variable (Value) is a boolean on whether the toggle is true or false
+		
+		if getgenv().mirage.respawnwheredead then getgenv().mirage.respawnwheredead=false; alreadyrwyd=true return end
+		if alreadyrwyd then getgenv().mirage.respawnwheredead=Value return end
+		game.Players.LocalPlayer.Character:WaitForChild('Humanoid').Died:connect(function()
+   			local a = game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').Position
+   			game.Players.LocalPlayer.CharacterAdded:Wait()
+			if not getgenv().mirage.respawnwheredead then return end
+   			game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').CFrame = CFrame.new(a)
+		end)
 		getgenv().mirage.respawnwheredead=Value
-				local LocalPlayer = game:GetService("Players").LocalPlayer
-
-local function GetLocation()
-if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Head") then
-return LocalPlayer.Character.HumanoidRootPart.CFrame
-end
-return nil
-end
-
-local Location = nil
-
-LocalPlayer.CharacterAdded:Connect(function(character)
-if Location then
-character:WaitForChild("HumanoidRootPart").CFrame = Location
-end
-character:WaitForChild("Humanoid").Died:Connect(function()
-Location = GetLocation()
-if not getgenv().mirage.respawnwheredead then Location = nil end
-end)
-end)
-		end
+		alreadyrwyd=true
 	end,
 })
 
