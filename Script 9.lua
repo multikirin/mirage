@@ -171,7 +171,7 @@ end
 end)
 end,
 })
-local Slider = Tab:CreateSlider({
+local Slider2 = Tab:CreateSlider({
 	Name = "Speed",
 	Range = {0, 1000},
 	Increment = 10,
